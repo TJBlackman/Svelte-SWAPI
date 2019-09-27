@@ -5,9 +5,19 @@ let p;
 page.subscribe(v => p = v); 
 
 export const fetchPage = () => {
-	console.log('fetching page...');
 
 	isLoading.set(true);
+
+
+	let doneLoading = false; 
+	let minimumTimeout = false;
+	setTimeout(() => { minimumTimeout = true; }, 4000)
+	const interval = setInterval(() => {
+		if (minimumTimeout && doneLoading){
+			isLoading.set(false); 
+			clearInterval(interval); 
+		}
+	}, 500);
 
 	fetch(p, {
 		headers: {
@@ -20,10 +30,10 @@ export const fetchPage = () => {
 				value[p] = res; 
 				return value; 
 			});
-			isLoading.set(false)
+			doneLoading = true;
 		})
 		.catch(err => {
 			console.log(err);
-			isLoading.set(false)
+			doneLoading = true;
 		})
 }; 

@@ -1,15 +1,22 @@
 <script>
 	import { pageData } from '../stores/store';
 	import ButtonList from '../components/ButtonList.svelte'; 
-	console.log($pageData);
 
-	let info = $pageData.results.map(i => ({
-		href: i.url,
-		text: i.title,
-		id: i.episode_id
-	})).sort((a, b) => {
-		return a < b ? -1 : 1;
-	}); 
+	let info;
+
+	pageData.subscribe(value => {
+		if (!value || !value.results){
+			info = [];
+			return; 
+		}
+		info = value.results.map(i => ({
+			href: i.url,
+			text: i.title,
+			id: i.episode_id
+		})).sort((a, b) => {
+			return a < b ? -1 : 1;
+		}); 
+	})
 </script>
 
 <style>

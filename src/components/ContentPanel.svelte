@@ -9,13 +9,19 @@
 	let pageComponent;
 	
 	onMount(() => { 
-		!$pageData && fetchPage();
-		pageComponent = getCurrentPageElement($page)
+		if (!$pageData){
+			fetchPage();
+		} else {
+			pageComponent = getCurrentPageElement($page)
+		}		
 	});
 
-	afterUpdate(() => { 
-		!$pageData && fetchPage();
-		pageComponent = getCurrentPageElement($page)
+	afterUpdate(() => {
+		if (!$pageData){
+			fetchPage();
+		} else {
+			pageComponent = getCurrentPageElement($page)
+		}		
 	});
 </script>
 

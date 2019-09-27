@@ -1,4 +1,5 @@
 import { writable, derived } from 'svelte/store'; 
+import { set_custom_element_data } from 'svelte/internal';
 
 export const page      = writable('https://swapi.co/api/');
 export const json      = writable({});

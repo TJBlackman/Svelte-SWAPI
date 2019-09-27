@@ -6,7 +6,10 @@
 	let author = '';
 
 	onMount(() => {
-		const id = Math.floor(Math.random() * (sayings.length - 0 + 1) + 0);
+		let id = Math.floor(Math.random() * (sayings.length - 0 + 1) + 0);
+		if (!sayings[id]){
+			id = 0;
+		}
 		const saying = sayings[id].split(' — ');  
 		quote = saying[0];
 		author = saying[1];

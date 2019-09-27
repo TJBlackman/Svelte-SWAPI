@@ -1,6 +1,5 @@
 <script>
 	import { pageData } from '../stores/store.js';
-	console.log($pageData); 
 </script>
 
 <style>
@@ -8,3 +7,7 @@
 </style>
 
 <h3>{$pageData.title}</h3>
+<p>Directed By: {$pageData.director}</p>
+<p>Realse Date: {$pageData.release_date}</p>
+
+<p>{@html $pageData.opening_crawl}</p>
